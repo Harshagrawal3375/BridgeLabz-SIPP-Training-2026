@@ -27,11 +27,11 @@ class EmployementSkill {
     }
 
     public static void main(String[] args) {
-        Solution obj = new Solution();
+        Object obj = new Object();
 
         int[] arr = {2, 3, 5, 7};
         int target = 10;
 
-        obj.findTeams(arr, target, 0, new ArrayList<>());
+        ((EmployementSkill) obj).findTeams(arr, target, 0, new ArrayList<>());
     }
 }
