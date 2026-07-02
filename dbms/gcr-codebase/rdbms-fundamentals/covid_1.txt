@@ -1,0 +1,57 @@
+-- Create the database
+CREATE DATABASE covid_db;
+USE covid_db;
+
+-- Create covid_cases table
+CREATE TABLE covid_cases (
+    country VARCHAR(100),
+    report_date DATE,
+    confirmed_cases INT,
+    deaths INT,
+    recoveries INT,
+    population BIGINT,
+    PRIMARY KEY (country, report_date)
+);
+
+-- Create covid_deaths table (tracking deaths specifically)
+CREATE TABLE covid_deaths (
+    country VARCHAR(100),
+    report_date DATE,
+    deaths INT
+);
+
+-- Create covid_vaccines table
+CREATE TABLE covid_vaccines (
+    country VARCHAR(100),
+    report_date DATE,
+    vaccination_rate DECIMAL(5,2) -- Stores up to 100.00%
+);
+
+INSERT INTO covid_cases (country, report_date, confirmed_cases, deaths, recoveries, population)
+VALUES 
+('India', '2026-07-01', 50000, 100, 45000, 1400000000),
+('India', '2026-07-02', 50500, 105, 45500, 1400000000),
+('USA', '2026-07-01', 90000, 1200, 85000, 330000000),
+('USA', '2026-07-02', 91000, 1210, 86000, 330000000),
+('UK', '2026-07-01', 20000, 50, 18000, 67000000);
+
+-- Update India's confirmed cases for a specific date
+UPDATE covid_cases
+SET confirmed_cases = 51000
+WHERE country = 'India' AND report_date = '2026-07-02';
+
+-- Remove record with incorrect country naming convention
+DELETE FROM covid_cases 
+WHERE country = 'IN';
+
+-- Remove a duplicate entry if necessary
+DELETE FROM covid_cases 
+WHERE country = 'India' AND report_date = '2026-07-01' 
+LIMIT 1;
+
+-- Add the vaccination_rate column
+ALTER TABLE covid_cases 
+ADD COLUMN vaccination_rate DECIMAL(5,2);
+
+-- Verification: See the updated structure
+DESCRIBE covid_cases;
