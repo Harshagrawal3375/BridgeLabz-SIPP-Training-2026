@@ -67,7 +67,7 @@ public class Sorting{
         int arr2[] = {2, 4, 1, 6, 5};
         int arr3[] = {2, 4, 1, 6, 5};
 
-        sorting s = new orting();
+        sorting s = new sorting();
 
         s.SelectionSort(arr1);
         s.BubbleSort(arr2);
