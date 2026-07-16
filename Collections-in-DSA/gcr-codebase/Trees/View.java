@@ -87,5 +87,9 @@ public class View {
         t6.right = null;
         t7.left = null;
         t7.right = null;
+        LeftView(t1);
+        System.out.println();
+        rightView(t1);
+        
     }
 }
